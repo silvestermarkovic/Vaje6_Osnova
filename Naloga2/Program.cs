@@ -23,12 +23,11 @@ namespace Naloga2
             //TODO 2.3
             //klicite metodo dolociCasovnik, ki kot parameter dobi casovnik ustvarjen v koraku 2.1
             //koda 1 vrstica
+            dolociCasovnik(casovnik);  //kot parameter podamo časovnik, ki smo ga deklarirari na vrhu, deklrariramo ga znotraj Classa,
+            //da je dostopen vsem metodam znotraj tega classa
+            //ker smo v statični metodi, morajo biti metode, ki jih kličemo tudi statične!
 
-            
-
-            //vaša koda
-            //uporabnik vnese koliko obremenitev naj se utvari
-            //namesto 100 dajte vneseno vrednost
+             
 
             for (int i = 0; i < 100; i++)
             {
@@ -52,15 +51,20 @@ namespace Naloga2
             //TODO 2.4
             // Časovniku določite interval 2s (kličite konstuktor  System.Timers.Timer) 
             //določite interval na 2s
-            
-            // na event Elapsed, dodajte metodo casovnikDogodek 
+            pcasovnik.Interval = 2000;
 
+            // na event Elapsed, dodajte metodo casovnikDogodek 
+            pcasovnik.Elapsed += casovnikDogodek;  //!!!!!! tu se vse zgodi!: določimo metodo, ki bo klicana, ko se sproži naš Timer!!!
             //časovnik naj deluje ves čas, naj se izvaja nepreklicno
-            //koda 1 vrstica
-            
+            pcasovnik.AutoReset = true;  //to velja za  System.Timers.Timer, za Sytem.Threading.Timer, že v konstuktorju povemo, kako bo deloval, 
+                                         //imamo 2 parametra, kdaj se zažene prvič in kdaj se ponovi (infiniti), pomeni, da se naslednjič nikoli ne zažene
+
+
             //vkjucite/zaženite pcasovnik
-            //koda 1 vrstica
             
+            pcasovnik.Start();
+            //koda 1 vrstica
+
         }
         //VAJE 6
         private static void casovnikDogodek(Object source, ElapsedEventArgs e)
@@ -71,11 +75,9 @@ namespace Naloga2
             //TODO 2.5
             //uporabite razred singleton in izpišite trenutno stanje strežnikov
             //deklarijate spremenljivko tipa Razporeditelj s klicem Razporeditelj.VrniRazporeditelj
-            
+            var raz = Razporeditelj.VrniRazporeditelj();
             //kličite izpis stanja, ki ste ga kreirali v točki 2.2
-            
-
-
+            raz.izpisPorocilo();
 
         }
 

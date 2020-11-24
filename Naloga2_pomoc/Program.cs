@@ -9,38 +9,40 @@ namespace Naloga2_pomoc
         static string stateObject1 = "AAAAA";
 
         //primer1
-        static System.Threading.Timer tim1;
+        static System.Threading.Timer timerDrugiNacin;
 
 
         static void Main(string[] args)
         {
 
 
-
+            /*
 
             //TODO 3 Primer deklariranja Therading objekta 1. način
             // https://www.c-sharpcorner.com/UploadFile/1d42da/timer-class-in-threading-C-Sharp/
-            tim1 = new System.Threading.Timer(TimerPovratniKlic, "sssssss", 1000, 1000);
 
-
+           
 
             //TODO 3 Primer deklariranja Therading objekta 2. način, iz vaj
             string stateObject = "BBBBB";
             var timer = new System.Threading.Timer(
-                  state => {
-                      Console.WriteLine($"Uporabnik {state} kliče kodo v timerju!"); // Dejanska koda, ki se izvede
+                  x => {
+                      Console.WriteLine($"TIMER: Vhodni parameter {x} !"); // Dejanska koda, ki se izvede
                   },
                   stateObject, // Objekt, ki ga uporabimo v spremenljivki state v zgornjem lambda izrazu
-                  1000,   // Zamik pred prvim klicem timerja
-                  2000    // Interval med zaporednimi klici. V tem primeru naslednjega klica ne bo.
+                  6000,   // Zamik pred prvim klicem timerja
+                  500    // Interval med zaporednimi klici. V tem primeru naslednjega klica ne bo.
                   );
 
-            Console.ReadLine();
+          
+            timerDrugiNacin = new System.Threading.Timer(TimerPovratniKlic, stateObject,  0, 700);
+
+
             Console.WriteLine("Konec Timer1");
 
             timer.Dispose();
-            tim1.Dispose();
-
+            timerDrugiNacin.Dispose();
+            */
 
             //TODO 3: primer Timers.Timer
             Console.WriteLine("Timer2");
@@ -51,6 +53,8 @@ namespace Naloga2_pomoc
             casovnik.Start();
 
             Console.ReadLine();
+            stateObject1 = "kkkkkk";
+
             Console.WriteLine("Konec Timer2");
 
         }
@@ -63,7 +67,7 @@ namespace Naloga2_pomoc
 
         private static void TimerPovratniKlic(object podatek)
         {
-            Console.WriteLine($"Tim1 {podatek} kliče kodo v timerju!");
+            Console.WriteLine($"TimerDrugiNačin {podatek} kliče kodo v timerju!");
         }
     }
 }

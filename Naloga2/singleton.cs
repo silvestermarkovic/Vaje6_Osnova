@@ -87,6 +87,11 @@ namespace Naloga2
             //Obremenitev po strežnikih:
             //naziv strežnika, IP naslov, obremenitev/obremenitev max
 
+            Console.WriteLine("Število opravljenih klicev: {0}", _strezniki.Sum(x => x.StKlicev));
+            Console.WriteLine("Trenutna skupna obremenitev strežnikov: {0}/{0}", _strezniki.Sum(x => x.Obremenitev ), _strezniki.Sum(x => x.ObremenitevMax));
+            Console.WriteLine("Obremenitev po strežnikih:");
+            _strezniki.ForEach(x => Console.WriteLine($"{x.Name}, {x.Ip}, {x.Obremenitev} / {x.ObremenitevMax}"));
+
         }
     }
 
